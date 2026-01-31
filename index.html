@@ -78,6 +78,35 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 30px rgba(14, 165, 233, 0.15);
         }
         
+        /* Clickable amenity specific styles */
+        .amenity-card {
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .amenity-card::after {
+            content: 'View Photo';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(14, 165, 233, 0.9), transparent);
+            color: white;
+            padding: 1rem 0.5rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .amenity-card:hover::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         /* Blue glow button */
         .glow-btn {
             position: relative;
@@ -166,6 +195,29 @@
             background: rgba(14, 165, 233, 0.2);
             color: #0c4a6e;
         }
+
+        /* Testimonial specific styles */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        .star-rating {
+            color: #fbbf24;
+            letter-spacing: -2px;
+        }
+
+        .avatar-circle {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col">
@@ -205,7 +257,7 @@
             </h1>
             <p class="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-light">
                 Premium furnished apartments & vacation rentals designed for comfort. 
-                Fully-equipped amenities for short and extended stays.
+                Fully-equipped amenities for short and extended stays in Zamboanga City.
             </p>
         </div>
 
@@ -303,44 +355,166 @@
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center gap-3 group cursor-default">
+                <div class="glass-card amenity-card rounded-2xl p-6 flex flex-col items-center text-center gap-3 group" onclick="showAmenityPhoto('wifi')">
                     <i data-lucide="wifi" class="w-8 h-8 amenity-icon"></i>
                     <span class="text-sm text-slate-700 font-medium">High-Speed WiFi</span>
                 </div>
-                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center gap-3 group cursor-default">
+                <div class="glass-card amenity-card rounded-2xl p-6 flex flex-col items-center text-center gap-3 group" onclick="showAmenityPhoto('tv')">
                     <i data-lucide="tv" class="w-8 h-8 amenity-icon"></i>
                     <span class="text-sm text-slate-700 font-medium">Smart TV</span>
                 </div>
-                <div class="glass-card rounded-2xl p-6 flex flex-col items-center text-center gap-3 group cursor-default">
+                <div class="glass-card amenity-card rounded-2xl p-6 flex flex-col items-center text-center gap-3 group" onclick="showAmenityPhoto('kitchen')">
                     <i data-lucide="chef-hat" class="w-8 h-8 amenity-icon"></i>
                     <span class="text-sm text-slate-700 font-medium">Full Kitchen</span>
                 </div>
-                <div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-default">
+                <div class="glass-card amenity-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group" onclick="showAmenityPhoto('parking')">
                     <i data-lucide="car" class="w-8 h-8 amenity-icon"></i>
                     <span class="text-sm text-slate-700 font-medium">Free Parking</span>
                 </div>
-                <div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-default">
+                <div class="glass-card amenity-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group" onclick="showAmenityPhoto('ac')">
                     <i data-lucide="wind" class="w-8 h-8 amenity-icon"></i>
                     <span class="text-sm text-slate-700 font-medium">Air Conditioning</span>
                 </div>
-                <div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-default">
-                    <i data-lucide="washing-machine" class="w-8 h-8 amenity-icon"></i>
-                    <span class="text-sm text-slate-700 font-medium">Washer/Dryer</span>
-                </div>
-                <div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-default">
+                <!-- Washer/Dryer removed as requested -->
+                <div class="glass-card amenity-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group" onclick="showAmenityPhoto('security')">
                     <i data-lucide="shield-check" class="w-8 h-8 amenity-icon"></i>
                     <span class="text-sm text-slate-700 font-medium">24/7 Security</span>
                 </div>
-                <div class="glass-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group cursor-default">
+                <div class="glass-card amenity-card rounded-2xl p-4 flex flex-col items-center text-center gap-3 group" onclick="showAmenityPhoto('location')">
                     <i data-lucide="map-pin" class="w-8 h-8 amenity-icon"></i>
                     <span class="text-sm text-slate-700 font-medium">Prime Location</span>
                 </div>
             </div>
             
-            <p class="text-center text-slate-500 text-sm mt-6 italic">Full amenity list available when you book • More features coming soon</p>
+            <p class="text-center text-slate-500 text-sm mt-6 italic">Click any amenity to view photos • More features coming soon</p>
+        </div>
+
+        <!-- Guest Testimonials Section -->
+        <div class="w-full max-w-6xl px-4 mb-16">
+            <div class="flex items-center justify-center gap-4 mb-10">
+                <div class="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
+                <h2 class="font-serif text-3xl text-slate-700">What Our Guests Say</h2>
+                <div class="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1: Jm -->
+                <div class="testimonial-card rounded-2xl p-6 relative">
+                    <div class="absolute -top-3 -right-3 bg-blue-500 text-white p-2 rounded-full shadow-lg">
+                        <i data-lucide="quote" class="w-5 h-5"></i>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full avatar-circle flex items-center justify-center text-lg flex-shrink-0">
+                            J
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-slate-900 truncate">Jm</h4>
+                            <p class="text-xs text-slate-500 mb-1">7 years on Airbnb</p>
+                            <div class="flex items-center gap-1">
+                                <span class="star-rating text-lg">★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        "Kudos to the host and caretaker. Such very accomodating people. My partner and I had a great time in there. Will definitely book again and recommend to my friends."
+                    </p>
+                    
+                    <div class="flex items-center gap-2 text-xs text-slate-400 border-t border-slate-100 pt-3">
+                        <i data-lucide="calendar" class="w-3 h-3"></i>
+                        <span>September 2025</span>
+                    </div>
+                </div>
+
+                <!-- Review 2: Rizza Paz -->
+                <div class="testimonial-card rounded-2xl p-6 relative">
+                    <div class="absolute -top-3 -right-3 bg-blue-500 text-white p-2 rounded-full shadow-lg">
+                        <i data-lucide="quote" class="w-5 h-5"></i>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full avatar-circle flex items-center justify-center text-lg flex-shrink-0" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                            R
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-slate-900 truncate">Rizza Paz</h4>
+                            <p class="text-xs text-slate-500 mb-1">4 months on Airbnb</p>
+                            <div class="flex items-center gap-1">
+                                <span class="star-rating text-lg">★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        "The place is great when you're looking for a place to stay that is budget-friendly. Both of the rooms have AC. There's also a hot shower available. The staff and host is friendly and responds very well to your queries. The neighborhood is peaceful and private but there are convenience stores and restaurants available nearby. We had a great experience here."
+                    </p>
+                    
+                    <div class="flex items-center gap-2 text-xs text-slate-400 border-t border-slate-100 pt-3">
+                        <i data-lucide="calendar" class="w-3 h-3"></i>
+                        <span>December 2025</span>
+                    </div>
+                </div>
+
+                <!-- Review 3: Clark Adrian -->
+                <div class="testimonial-card rounded-2xl p-6 relative">
+                    <div class="absolute -top-3 -right-3 bg-blue-500 text-white p-2 rounded-full shadow-lg">
+                        <i data-lucide="quote" class="w-5 h-5"></i>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full avatar-circle flex items-center justify-center text-lg flex-shrink-0" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            C
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-slate-900 truncate">Clark Adrian</h4>
+                            <p class="text-xs text-slate-500 mb-1">2 years on Airbnb</p>
+                            <div class="flex items-center gap-1">
+                                <span class="star-rating text-lg">★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-600 text-sm leading-relaxed mb-3">
+                        "A great place to stay when you're in Zamboanga City."
+                    </p>
+                    
+                    <div class="flex items-center gap-2 text-xs text-slate-400 border-t border-slate-100 pt-3">
+                        <i data-lucide="calendar" class="w-3 h-3"></i>
+                        <span>September 2024</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="https://www.airbnb.com/rooms/1218785270396268139?check_in=2026-02-09&check_out=2026-02-11&guests=1&adults=2&s=67&unique_share_id=3cd00d88-2a1a-407c-ae50-da35c18a0489" target="_blank" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors">
+                    <span>View all reviews on Airbnb</span>
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
         </div>
 
     </main>
+
+    <!-- Image Modal for Amenities (Hidden by default) -->
+    <div id="amenityModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-overlay p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 relative shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="amenityModalContent">
+            <button onclick="closeAmenityModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                <i data-lucide="x" class="w-5 h-5 text-slate-600"></i>
+            </button>
+            
+            <h3 id="amenityModalTitle" class="font-serif text-2xl font-bold text-slate-900 mb-4">Amenity Name</h3>
+            
+            <div class="aspect-video bg-slate-100 rounded-xl flex items-center justify-center mb-4 border-2 border-dashed border-slate-300">
+                <div class="text-center p-6">
+                    <i data-lucide="image" class="w-12 h-12 text-slate-400 mx-auto mb-2"></i>
+                    <p class="text-slate-500 text-sm">Photo coming soon</p>
+                </div>
+            </div>
+            
+            <p class="text-slate-600 text-sm text-center">We're currently updating our amenity photos. Check back soon for detailed images of this feature!</p>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="relative z-10 py-8 text-center border-t border-slate-200 bg-white/50 backdrop-blur-sm">
@@ -350,13 +524,16 @@
                 <span class="font-serif text-xl font-bold text-slate-900">HOMITEL</span>
             </div>
             <p class="text-slate-500 text-sm mb-4">Premium Lodgings & Vacation Rentals</p>
-            <div class="flex justify-center gap-6 text-slate-600 items-center">
+            <div class="flex justify-center gap-6 text-slate-600 items-center flex-wrap">
                 <a href="https://www.facebook.com/profile.php?id=61560217364747" target="_blank" class="hover:text-blue-600 transition-colors text-sm flex items-center gap-1">
                     <i data-lucide="facebook" class="w-4 h-4"></i>
                     Facebook
                 </a>
                 <span class="text-slate-300">•</span>
-                <a href="#" onclick="toggleChat()" class="hover:text-blue-600 transition-colors text-sm cursor-pointer">Messenger</a>
+                <a href="#" onclick="toggleChat()" class="hover:text-blue-600 transition-colors text-sm cursor-pointer flex items-center gap-1">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    Messenger
+                </a>
                 <span class="text-slate-300">•</span>
                 <a href="https://www.airbnb.com/rooms/1218785270396268139?check_in=2026-02-09&check_out=2026-02-11&guests=1&adults=2&s=67&unique_share_id=3cd00d88-2a1a-407c-ae50-da35c18a0489" target="_blank" class="hover:text-blue-600 transition-colors text-sm">Airbnb</a>
                 <span class="text-slate-300">•</span>
@@ -394,7 +571,6 @@
             } else {
                 dropdown.classList.add('active');
                 arrow.style.transform = 'rotate(180deg)';
-                // Scroll to dropdown on mobile
                 if (window.innerWidth < 768) {
                     setTimeout(() => {
                         dropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -408,6 +584,52 @@
             window.open('https://m.me/danmichaelbucoy25', '_blank');
         }
 
+        // Amenity Modal Functions
+        function showAmenityPhoto(amenityType) {
+            const modal = document.getElementById('amenityModal');
+            const content = document.getElementById('amenityModalContent');
+            const title = document.getElementById('amenityModalTitle');
+            
+            const titles = {
+                'wifi': 'High-Speed WiFi',
+                'tv': 'Smart TV',
+                'kitchen': 'Full Kitchen',
+                'parking': 'Free Parking',
+                'ac': 'Air Conditioning',
+                'security': '24/7 Security',
+                'location': 'Prime Location'
+            };
+            
+            title.textContent = titles[amenityType] || 'Amenity';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeAmenityModal() {
+            const modal = document.getElementById('amenityModal');
+            const content = document.getElementById('amenityModalContent');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('amenityModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAmenityModal();
+            }
+        });
+
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('bookingDropdown');
@@ -419,7 +641,7 @@
             }
         });
 
-        // Add subtle parallax effect
+        // Parallax effect
         document.addEventListener('mousemove', (e) => {
             const cards = document.querySelectorAll('.glass-card');
             const x = (window.innerWidth - e.pageX * 2) / 100;
@@ -433,7 +655,6 @@
             });
         });
 
-        // Reset transform on hover
         document.querySelectorAll('.glass-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 card.classList.add('hovering');
